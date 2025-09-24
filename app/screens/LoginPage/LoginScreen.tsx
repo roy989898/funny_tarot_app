@@ -1,4 +1,6 @@
-import {Text, View, StyleSheet, TextInput, TouchableOpacity} from "react-native";
+import {View, StyleSheet, TouchableOpacity} from "react-native";
+import {Text, TextInput,} from 'react-native-paper'
+
 import {SafeAreaView} from "react-native-safe-area-context";
 import type {NativeStackScreenProps} from "@react-navigation/native-stack";
 import type {RootStackParamList} from "@/App";
@@ -20,8 +22,9 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 
                 <View style={styles.form}>
                     <View style={styles.inputGroup}>
-                        <Text style={styles.label}>Email</Text>
+                        {/*<Text style={styles.label}>Email</Text>*/}
                         <TextInput
+                            label={"Email"}
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
@@ -33,8 +36,9 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                     </View>
 
                     <View style={styles.inputGroup}>
-                        <Text style={styles.label}>Password</Text>
+                        {/*<Text style={styles.label}>Password</Text>*/}
                         <TextInput
+                            label={"Password"}
                             style={styles.input}
                             value={password}
                             onChangeText={setPassword}
@@ -50,7 +54,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.footerText}>Don't have an account?</Text>
+                    <Text style={styles.footerText}>Don&#39;t have an account?</Text>
                     <TouchableOpacity>
                         <Text style={styles.footerLink}>Sign up</Text>
                     </TouchableOpacity>
@@ -103,13 +107,13 @@ const styles = StyleSheet.create({
         marginBottom: 8, // 8pt × 1
     },
     input: {
-        height: 48, // 8pt × 6
-        borderWidth: 1,
-        borderColor: '#D1D5DB',
-        borderRadius: 8, // 8pt × 1
-        paddingHorizontal: 16, // 8pt × 2
+        /*  height: 48, // 8pt × 6
+          borderWidth: 1,
+          borderColor: '#D1D5DB',
+          borderRadius: 8, // 8pt × 1
+          paddingHorizontal: 16, // 8pt × 2*/
         fontSize: 16, // 8pt × 2
-        backgroundColor: '#FFFFFF',
+        // backgroundColor: '#FFFFFF',
     },
     button: {
         height: 48, // 8pt × 6
