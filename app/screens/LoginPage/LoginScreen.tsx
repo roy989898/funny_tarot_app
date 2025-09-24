@@ -4,7 +4,14 @@ import { Image } from 'expo-image';
 import {SafeAreaView} from "react-native-safe-area-context";
 import type {NativeStackScreenProps} from "@react-navigation/native-stack";
 import type {RootStackParamList} from "@/App";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import Animated, {
+    useSharedValue,
+    useAnimatedStyle,
+    withRepeat,
+    withTiming,
+    interpolate,
+} from 'react-native-reanimated';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -13,6 +20,25 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // Animation setup for spinning card
+    const rotation = useSharedValue(0);
+
+    useEffect(() => {
+        rotation.value = withRepeat(
+            withTiming(360, { duration: 3000 }),
+            -1,
+            false
+        );
+    }, []);
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [
+                { rotateY: `${rotation.value}deg` }
+            ],
+        };
+    });
+
     return (
         <SafeAreaView style={{
             ...styles.container, backgroundColor: theme.colors.background
@@ -20,7 +46,9 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
             <View style={styles.content}>
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
-                    <Image source={require('../../../assets/images/tarot__back.png')} style={{width: 80, height: 120}}/>
+                    <Animated.View style={animatedStyle}>
+                        <Image source={require('../../../assets/images/tarot__back.png')} style={{width: 80, height: 120}}/>
+                    </Animated.View>
                     <Text style={styles.title}>Welcome Back</Text>
                     <Text style={styles.subtitle}>Sign in to continue</Text>
                 </View>
