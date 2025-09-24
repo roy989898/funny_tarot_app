@@ -11,24 +11,132 @@ import Animated, {
     withRepeat,
     withTiming,
     interpolate,
+    useDerivedValue,
 } from 'react-native-reanimated';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+// Array of all tarot cards
+const TAROT_CARDS = [
+    // Major Arcana
+    require('../../../assets/images/major_arcana/tarot__fool.png'),
+    require('../../../assets/images/major_arcana/tarot__magician.png'),
+    require('../../../assets/images/major_arcana/tarot__priestess.png'),
+    require('../../../assets/images/major_arcana/tarot__empress.png'),
+    require('../../../assets/images/major_arcana/tarot__emperor.png'),
+    require('../../../assets/images/major_arcana/tarot__hierophant.png'),
+    require('../../../assets/images/major_arcana/tarot__lovers.png'),
+    require('../../../assets/images/major_arcana/tarot__chariot.png'),
+    require('../../../assets/images/major_arcana/tarot__strength.png'),
+    require('../../../assets/images/major_arcana/tarot__hermit.png'),
+    require('../../../assets/images/major_arcana/tarot__fortune.png'),
+    require('../../../assets/images/major_arcana/tarot__justice.png'),
+    require('../../../assets/images/major_arcana/tarot__hangman.png'),
+    require('../../../assets/images/major_arcana/tarot__death.png'),
+    require('../../../assets/images/major_arcana/tarot__temperance.png'),
+    require('../../../assets/images/major_arcana/tarot__devil.png'),
+    require('../../../assets/images/major_arcana/tarot__tower.png'),
+    require('../../../assets/images/major_arcana/tarot__star.png'),
+    require('../../../assets/images/major_arcana/tarot__moon.png'),
+    require('../../../assets/images/major_arcana/tarot__sun.png'),
+    require('../../../assets/images/major_arcana/tarot__judgment.png'),
+    require('../../../assets/images/major_arcana/tarot__theworld.png'),
+
+    // Minor Arcana - Cups
+    require('../../../assets/images/minor_arcana/tarot__ace_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__2_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__3_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__4_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__5_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__6_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__7_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__8_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__9_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__10_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__page_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__knight_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__queen_cups.png'),
+    require('../../../assets/images/minor_arcana/tarot__king_cups.png'),
+
+    // Minor Arcana - Wands
+    require('../../../assets/images/minor_arcana/tarot__ace_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__2_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__3_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__4_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__5_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__6_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__7_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__8_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__9_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__10_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__page_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__knight_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__queen_wands.png'),
+    require('../../../assets/images/minor_arcana/tarot__king_wands.png'),
+
+    // Minor Arcana - Swords
+    require('../../../assets/images/minor_arcana/tarot__ace_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__2_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__3_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__4_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__5_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__6_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__7_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__8_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__9_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__10_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__page_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__knight_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__queen_swords.png'),
+    require('../../../assets/images/minor_arcana/tarot__king_swords.png'),
+
+    // Minor Arcana - Pentacles
+    require('../../../assets/images/minor_arcana/tarot__ace_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__2_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__3_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__4_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__5_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__6_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__7_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__8_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__9_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__10_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__page_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__knight_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__queen_pentacles.png'),
+    require('../../../assets/images/minor_arcana/tarot__king_pentacles.png'),
+];
 
 export function LoginScreen({navigation}: Props): React.JSX.Element {
     const theme = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [currentCard, setCurrentCard] = useState(TAROT_CARDS[0]);
+    const [showCardBack, setShowCardBack] = useState(true);
 
     // Animation setup for spinning card
     const rotation = useSharedValue(0);
 
     useEffect(() => {
         rotation.value = withRepeat(
-            withTiming(360, { duration: 3000 }),
+            withTiming(180, { duration: 1500 }),
             -1,
-            false
+            true
         );
+
+        // Toggle between back and front every 1.5 seconds
+        const toggleInterval = setInterval(() => {
+            setShowCardBack(prev => {
+                if (!prev) {
+                    // When switching from card to back, pick a new random card
+                    const randomIndex = Math.floor(Math.random() * TAROT_CARDS.length);
+                    setCurrentCard(TAROT_CARDS[randomIndex]);
+                }
+                return !prev;
+            });
+        }, 1500);
+
+        return () => clearInterval(toggleInterval);
     }, []);
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -47,7 +155,10 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
                     <Animated.View style={animatedStyle}>
-                        <Image source={require('../../../assets/images/tarot__back.png')} style={{width: 80, height: 120}}/>
+                        <Image
+                            source={showCardBack ? require('../../../assets/images/tarot__back.png') : currentCard}
+                            style={{width: 80, height: 120}}
+                        />
                     </Animated.View>
                     <Text style={styles.title}>Welcome Back</Text>
                     <Text style={styles.subtitle}>Sign in to continue</Text>
