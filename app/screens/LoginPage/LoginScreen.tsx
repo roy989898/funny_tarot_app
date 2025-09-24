@@ -10,7 +10,9 @@ import Animated, {
     useAnimatedStyle,
     withRepeat,
     withTiming,
-    interpolate, useDerivedValue,
+    interpolate,
+    useDerivedValue,
+    runOnJS,
 } from 'react-native-reanimated';
 // Array of all tarot cards
 const TAROT_CARDS = [
@@ -109,21 +111,31 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
     const theme = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [currentCard, setCurrentCard] = useState(TAROT_CARDS[0]);
 
     // Animation setup for spinning card
     const rotation = useSharedValue(0);
-    // const isCardFace = useSharedValue(false);
-    const [isCardFace, setIsCardFace] = useState(true);
+    const cardIndex = useSharedValue(0);
 
+    const getRandomCard = () => {
+        const randomIndex = Math.floor(Math.random() * TAROT_CARDS.length);
+        setCurrentCard(TAROT_CARDS[randomIndex]);
+        cardIndex.value = randomIndex;
+    };
 
     useEffect(() => {
         rotation.value = withRepeat(
-            withTiming(180 * 10, {duration: 1500 * 10}),
+            withTiming(180, { duration: 1500 }),
             -1,
-            false
+            true
         );
 
+        // Change card and toggle back/face every 1.5 seconds
+        const interval = setInterval(() => {
+            getRandomCard()
+        }, 1500*2);
 
+        return () => clearInterval(interval);
     }, []);
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -142,10 +154,10 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
                     <Animated.View style={animatedStyle}>
-                        {/*         <Text style={styles.title}>{isCardFace.value}</Text>
-                        <Text style={styles.title}>{rotation.value}</Text>*/}
-                        <Image source={TAROT_CARDS[0]}
-                               style={{width: 80, height: 120}}/>
+                        <Image
+                            source={/*showBack ? require('../../../assets/images/tarot__back.png') :*/ currentCard}
+                            style={{width: 80, height: 120}}
+                        />
                     </Animated.View>
 
                     <Text style={styles.title}>Welcome Back</Text>
