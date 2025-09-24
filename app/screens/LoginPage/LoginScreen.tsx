@@ -20,7 +20,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
             <View style={styles.content}>
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
-                    <Image source={{uri: 'tarot__back'}} style={{width: 100, height: 100}}/>
+                    <Image source={require('../../../assets/images/tarot__back.png')} style={{width: 80, height: 120}}/>
                     <Text style={styles.title}>Welcome Back</Text>
                     <Text style={styles.subtitle}>Sign in to continue</Text>
                 </View>
