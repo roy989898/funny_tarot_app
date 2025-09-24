@@ -14,7 +14,9 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
     const [password, setPassword] = useState('');
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={{
+            ...styles.container, backgroundColor: theme.colors.background
+        }}>
             <View style={styles.content}>
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
