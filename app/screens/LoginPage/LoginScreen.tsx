@@ -10,7 +10,7 @@ import Animated, {
     useAnimatedStyle,
     withRepeat,
     withTiming,
-    interpolate,
+    interpolate, useDerivedValue,
 } from 'react-native-reanimated';
 // Array of all tarot cards
 const TAROT_CARDS = [
@@ -112,7 +112,9 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 
     // Animation setup for spinning card
     const rotation = useSharedValue(0);
-    const isCardFace = useSharedValue(false);
+    // const isCardFace = useSharedValue(false);
+    const [isCardFace, setIsCardFace] = useState(true);
+
 
     useEffect(() => {
         rotation.value = withRepeat(
@@ -120,6 +122,8 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
             -1,
             false
         );
+
+
     }, []);
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -138,9 +142,12 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
                     <Animated.View style={animatedStyle}>
-                        <Image source={isCardFace ? TAROT_CARDS[0] : require('../../../assets/images/tarot__back.png')}
+                        {/*         <Text style={styles.title}>{isCardFace.value}</Text>
+                        <Text style={styles.title}>{rotation.value}</Text>*/}
+                        <Image source={TAROT_CARDS[0]}
                                style={{width: 80, height: 120}}/>
                     </Animated.View>
+
                     <Text style={styles.title}>Welcome Back</Text>
                     <Text style={styles.subtitle}>Sign in to continue</Text>
                 </View>
