@@ -39,7 +39,14 @@
         }
       ],
       "expo-localization",
-      "expo-asset"
+      [
+        "expo-asset",
+        {
+          "assets": [
+            "./assets/images/tarot__back.png"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

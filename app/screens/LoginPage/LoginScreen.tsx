@@ -1,6 +1,6 @@
 import {View, StyleSheet, TouchableOpacity} from "react-native";
 import {Text, TextInput, Button, useTheme} from 'react-native-paper'
-
+import { Image } from 'expo-image';
 import {SafeAreaView} from "react-native-safe-area-context";
 import type {NativeStackScreenProps} from "@react-navigation/native-stack";
 import type {RootStackParamList} from "@/App";
@@ -20,6 +20,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
             <View style={styles.content}>
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
+                    <Image source={{uri: 'tarot__back'}} style={{width: 100, height: 100}}/>
                     <Text style={styles.title}>Welcome Back</Text>
                     <Text style={styles.subtitle}>Sign in to continue</Text>
                 </View>
