@@ -1,5 +1,5 @@
 import {View, StyleSheet, TouchableOpacity} from "react-native";
-import {Text, TextInput,} from 'react-native-paper'
+import {Text, TextInput, Button, useTheme} from 'react-native-paper'
 
 import {SafeAreaView} from "react-native-safe-area-context";
 import type {NativeStackScreenProps} from "@react-navigation/native-stack";
@@ -9,6 +9,7 @@ import React, {useState} from "react";
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export function LoginScreen({navigation}: Props): React.JSX.Element {
+    const theme = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,6 +17,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.header}>
+                    {/*TODO here change to ICON or something*/}
                     <Text style={styles.title}>Welcome Back</Text>
                     <Text style={styles.subtitle}>Sign in to continue</Text>
                 </View>
@@ -48,15 +50,18 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                         />
                     </View>
 
-                    <TouchableOpacity style={styles.button}>
+                    {/* <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Sign In</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/}
+                    <Button mode="contained" onPress={() => console.log('Sign In')}>
+                        Sign In
+                    </Button>
                 </View>
 
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>Don&#39;t have an account?</Text>
                     <TouchableOpacity>
-                        <Text style={styles.footerLink}>Sign up</Text>
+                        <Text style={{color: theme.colors.primary, ...styles.footerLink}}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -115,18 +120,18 @@ const styles = StyleSheet.create({
         fontSize: 16, // 8pt × 2
         // backgroundColor: '#FFFFFF',
     },
-    button: {
-        height: 48, // 8pt × 6
-        backgroundColor: '#3B82F6',
-        borderRadius: 8, // 8pt × 1
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 8, // 8pt × 1
-    },
+    /*  button: {
+          height: 48, // 8pt × 6
+          backgroundColor: '#3B82F6',
+          borderRadius: 8, // 8pt × 1
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 8, // 8pt × 1
+      },*/
     buttonText: {
         fontSize: 16, // 8pt × 2
-        fontWeight: '600',
-        color: '#FFFFFF',
+        // fontWeight: '600',
+        // color: '#FFFFFF',
     },
     footer: {
         flexDirection: 'row',
@@ -142,6 +147,6 @@ const styles = StyleSheet.create({
     footerLink: {
         fontSize: 16, // 8pt × 2
         fontWeight: '600',
-        color: '#3B82F6',
+        // color: '#3B82F6',
     },
 });
