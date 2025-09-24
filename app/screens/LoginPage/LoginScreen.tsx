@@ -25,7 +25,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 
     useEffect(() => {
         rotation.value = withRepeat(
-            withTiming(360, { duration: 3000 }),
+            withTiming(180*10, { duration: 1500*10 }),
             -1,
             false
         );
