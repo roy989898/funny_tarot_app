@@ -125,7 +125,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 
     useEffect(() => {
         rotation.value = withRepeat(
-            withTiming(180, { duration: 1500 }),
+            withTiming(0, { duration: 1500 }),
             -1,
             true
         );
@@ -133,7 +133,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
         // Change card and toggle back/face every 1.5 seconds
         const interval = setInterval(() => {
             getRandomCard()
-        }, 1500*2);
+        }, 1500);
 
         return () => clearInterval(interval);
     }, []);
