@@ -29,6 +29,7 @@ const en = {
         registerToStart: 'Sign up to continue',
         register: "Sign up",
         haveAccount: "Have an account?",
+        sendCode: "Send Code",
 
 
     }
@@ -51,6 +52,7 @@ const es = {
         registerToStart: 'Sign up to continue',
         register: "Sign up",
         haveAccount: "Have an account?",
+        sendCode: "Send Code",
 
 
     }
@@ -73,7 +75,7 @@ const fr = {
         registerToStart: 'Sign up to continue',
         register: "Sign up",
         haveAccount: "Have an account?",
-
+        sendCode: "Send Code",
 
     }
 } as const;

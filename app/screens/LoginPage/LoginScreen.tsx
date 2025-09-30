@@ -94,19 +94,31 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                 </View>
 
                 <View style={styles.form}>
-                    <View style={styles.inputGroup}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
                         {/*<Text style={styles.label}>Email</Text>*/}
-                        <TextInput
-                            label={t('auth.email')}
-                            style={styles.input}
-                            value={email}
-                            onChangeText={setEmail}
-                            placeholder={t('auth.enterYourEmail')}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            autoComplete="email"
-                        />
+                        <View style={{...styles.inputGroup, flex: 1}}>
+                            <TextInput
+                                label={t('auth.email')}
+                                style={{...styles.input}}
+                                value={email}
+                                onChangeText={setEmail}
+                                placeholder={t('auth.enterYourEmail')}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                autoComplete="email"
+                            />
+                        </View>
+
+
+                        {isRegister ? (<>
+                            <Button style={{borderRadius: 0}} icon="send" mode="text"
+                                    onPress={() => console.log('Pressed')}>
+                                {t('auth.sendCode')}
+                            </Button></>) : (<></>)}
+
+
                     </View>
+                    {/*TODO pin code*/}
 
                     <View style={styles.inputGroup}>
                         {/*<Text style={styles.label}>Password</Text>*/}
