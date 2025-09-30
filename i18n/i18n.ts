@@ -31,7 +31,8 @@ const en = {
         haveAccount: "Have an account?",
         sendCode: "Send Code",
 
-
+        pinCode: "Pin Code",
+        enterYourPin: 'Enter your pin code form email',
     }
 } as const;
 
@@ -53,7 +54,8 @@ const es = {
         register: "Sign up",
         haveAccount: "Have an account?",
         sendCode: "Send Code",
-
+        pinCode: "Pin Code",
+        enterYourPin: 'Enter your pin code form email',
 
     }
 } as const;
@@ -76,6 +78,8 @@ const fr = {
         register: "Sign up",
         haveAccount: "Have an account?",
         sendCode: "Send Code",
+        pinCode: "Pin Code",
+        enterYourPin: 'Enter your pin code form email',
 
     }
 } as const;

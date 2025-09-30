@@ -26,6 +26,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
     const theme = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [pin, setPin] = useState("")
     const [currentCard, setCurrentCard] = useState(TAROT_CARDS[0]);
     const [isRegister, setIsRegister] = useState(false);
 
@@ -119,6 +120,25 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 
                     </View>
                     {/*TODO pin code*/}
+
+
+                    {isRegister ? (<>
+
+
+                        <View style={styles.inputGroup}>
+                            {/*<Text style={styles.label}>Password</Text>*/}
+                            <TextInput
+                                label={t('auth.pinCode')}
+                                style={styles.input}
+                                value={pin}
+                                onChangeText={setPin}
+                                placeholder={t('auth.enterYourPin')}
+
+
+                            />
+                        </View>
+                    </>) : (<></>)}
+
 
                     <View style={styles.inputGroup}>
                         {/*<Text style={styles.label}>Password</Text>*/}
