@@ -14,6 +14,7 @@ import Animated, {
     useDerivedValue,
     runOnJS,
 } from 'react-native-reanimated';
+import {useI18n} from "@/i18n/I18nContext";
 // Array of all tarot cards
 const TAROT_CARDS = [
     // Major Arcana
@@ -108,6 +109,7 @@ const TAROT_CARDS = [
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export function LoginScreen({navigation}: Props): React.JSX.Element {
+    const {t, changeLanguage} = useI18n();
     const theme = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -154,6 +156,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
             <View style={styles.content}>
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
+                    <Text>{t('welcome')}</Text>
                     <Animated.View style={animatedStyle}>
                         <Image
                             source={/*showBack ? require('../../../assets/images/tarot__back.png') :*/ currentCard}
@@ -215,7 +218,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-   /*     backgroundColor: '#FFFFFF',*/
+        /*     backgroundColor: '#FFFFFF',*/
     },
     content: {
         flex: 1,
