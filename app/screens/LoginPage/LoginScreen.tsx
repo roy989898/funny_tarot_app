@@ -1,4 +1,4 @@
-import {View, StyleSheet, TouchableOpacity} from "react-native";
+import {View, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform} from "react-native";
 import {Text, TextInput, Button, useTheme} from 'react-native-paper'
 import {Image} from 'expo-image';
 import {SafeAreaView} from "react-native-safe-area-context";
@@ -66,7 +66,8 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
         <SafeAreaView style={{
             ...styles.container, backgroundColor: theme.colors.background
         }}>
-            <View style={styles.content}>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.content}>
+
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
                     {/*<Text>{t('welcome')}</Text>*/}
@@ -123,7 +124,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                         <Text style={{color: theme.colors.primary, ...styles.footerLink}}>{t('auth.signUp')}</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 }
