@@ -125,10 +125,11 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 
     useEffect(() => {
         rotation.value = withRepeat(
-            withTiming(0, { duration: 1500 }),
+            withTiming(0, {duration: 1500}),
             -1,
             true
         );
+
 
         // Change card and toggle back/face every 1.5 seconds
         const interval = setInterval(() => {
@@ -214,7 +215,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+   /*     backgroundColor: '#FFFFFF',*/
     },
     content: {
         flex: 1,
@@ -247,12 +248,12 @@ const styles = StyleSheet.create({
     inputGroup: {
         gap: 8, // 8pt × 1
     },
-    label: {
-        fontSize: 16, // 8pt × 2
-        fontWeight: '500',
-        color: '#374151',
-        marginBottom: 8, // 8pt × 1
-    },
+    // label: {
+    //     fontSize: 16, // 8pt × 2
+    //     fontWeight: '500',
+    //     color: '#374151',
+    //     marginBottom: 8, // 8pt × 1
+    // },
     input: {
         /*  height: 48, // 8pt × 6
           borderWidth: 1,
@@ -270,11 +271,11 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           marginTop: 8, // 8pt × 1
       },*/
-    buttonText: {
-        fontSize: 16, // 8pt × 2
-        // fontWeight: '600',
-        // color: '#FFFFFF',
-    },
+    // buttonText: {
+    //     fontSize: 16, // 8pt × 2
+    //     // fontWeight: '600',
+    //     // color: '#FFFFFF',
+    // },
     footer: {
         flexDirection: 'row',
         justifyContent: 'center',
