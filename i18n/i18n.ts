@@ -23,37 +23,58 @@ const en = {
         enterYourPassword: 'Enter your password',
         signIn: 'Sign In',
         dontHaveAccount: "Don't have an account?",
-        signUp: 'Sign up'
+        signUp: 'Sign up',
+
+        hello: "Hello",
+        registerToStart: 'Sign up to continue',
+        register: "Sign up",
+        haveAccount: "Have an account?",
+
+
     }
 } as const;
 
 const es = {
 
     auth: {
-        welcomeBack: 'Bienvenido de nuevo',
-        signInToContinue: 'Inicia sesión para continuar',
-        email: 'Correo electrónico',
-        password: 'Contraseña',
-        enterYourEmail: 'Ingresa tu correo electrónico',
-        enterYourPassword: 'Ingresa tu contraseña',
-        signIn: 'Iniciar sesión',
-        dontHaveAccount: '¿No tienes una cuenta?',
-        signUp: 'Registrarse'
+        welcomeBack: 'Welcome Back',
+        signInToContinue: 'Sign in to continue',
+        email: 'Email',
+        password: 'Password',
+        enterYourEmail: 'Enter your email',
+        enterYourPassword: 'Enter your password',
+        signIn: 'Sign In',
+        dontHaveAccount: "Don't have an account?",
+        signUp: 'Sign up',
+
+        hello: "Hello",
+        registerToStart: 'Sign up to continue',
+        register: "Sign up",
+        haveAccount: "Have an account?",
+
+
     }
 } as const;
 
 const fr = {
 
     auth: {
-        welcomeBack: 'Bon retour',
-        signInToContinue: 'Connectez-vous pour continuer',
+        welcomeBack: 'Welcome Back',
+        signInToContinue: 'Sign in to continue',
         email: 'Email',
-        password: 'Mot de passe',
-        enterYourEmail: 'Entrez votre email',
-        enterYourPassword: 'Entrez votre mot de passe',
-        signIn: 'Se connecter',
-        dontHaveAccount: 'Vous n\'avez pas de compte ?',
-        signUp: 'S\'inscrire'
+        password: 'Password',
+        enterYourEmail: 'Enter your email',
+        enterYourPassword: 'Enter your password',
+        signIn: 'Sign In',
+        dontHaveAccount: "Don't have an account?",
+        signUp: 'Sign up',
+
+        hello: "Hello",
+        registerToStart: 'Sign up to continue',
+        register: "Sign up",
+        haveAccount: "Have an account?",
+
+
     }
 } as const;
 

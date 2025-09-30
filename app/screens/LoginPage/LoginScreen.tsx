@@ -27,6 +27,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [currentCard, setCurrentCard] = useState(TAROT_CARDS[0]);
+    const [isRegister, setIsRegister] = useState(false);
 
     // Animation setup for spinning card
     const rotation = useSharedValue(0);
@@ -77,9 +78,19 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                             style={{width: 80, height: 120}}
                         />
                     </Animated.View>
+                    {isRegister ? (
 
-                    <Text style={styles.title}>{t('auth.welcomeBack')}</Text>
-                    <Text style={styles.subtitle}>{t('auth.signInToContinue')}</Text>
+                        <>
+                            <Text style={styles.title}>{t('auth.hello')}</Text>
+                            <Text style={styles.subtitle}>{t('auth.registerToStart')}</Text>
+                        </>
+                    ) : (
+                        <>
+                            <Text style={styles.title}>{t('auth.welcomeBack')}</Text>
+                            <Text style={styles.subtitle}>{t('auth.signInToContinue')}</Text>
+                        </>
+                    )}
+
                 </View>
 
                 <View style={styles.form}>
@@ -113,16 +124,48 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                     {/* <TouchableOpacity style={styles.button}>
                         <Text style={styles.buttonText}>Sign In</Text>
                     </TouchableOpacity>*/}
-                    <Button mode="contained" onPress={() => console.log('Sign In')}>
-                        {t('auth.signIn')}
-                    </Button>
+
+
+                    {isRegister ? (
+                        <>
+
+
+                            <Button mode="contained" onPress={() => console.log('Register')}>
+                                {t('auth.register')}
+                            </Button>
+
+                        </>
+                    ) : (
+                        <>
+
+                            <Button mode="contained" onPress={() => console.log('Sign In')}>
+                                {t('auth.signIn')}
+                            </Button>
+
+
+                        </>
+                    )}
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.footerText}>{t('auth.dontHaveAccount')}</Text>
-                    <TouchableOpacity>
-                        <Text style={{color: theme.colors.primary, ...styles.footerLink}}>{t('auth.signUp')}</Text>
-                    </TouchableOpacity>
+
+
+                    {isRegister ? (<>
+
+
+                        <Text style={styles.footerText}>{t('auth.haveAccount')}</Text>
+                        <TouchableOpacity onPress={() => setIsRegister(false)}>
+                            <Text style={{color: theme.colors.primary, ...styles.footerLink}}>{t('auth.signIn')}</Text>
+                        </TouchableOpacity>
+
+                    </>) : (<>
+
+                        <Text style={styles.footerText}>{t('auth.dontHaveAccount')}</Text>
+                        <TouchableOpacity onPress={() => setIsRegister(true)}>
+                            <Text style={{color: theme.colors.primary, ...styles.footerLink}}>{t('auth.signUp')}</Text>
+                        </TouchableOpacity>
+
+                    </>)}
                 </View>
             </KeyboardAvoidingView>
         </SafeAreaView>
