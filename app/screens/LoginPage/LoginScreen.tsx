@@ -15,96 +15,9 @@ import Animated, {
     runOnJS,
 } from 'react-native-reanimated';
 import {useI18n} from "@/i18n/I18nContext";
+import {TAROT_CARDS} from "@/app/StaticValue";
 // Array of all tarot cards
-const TAROT_CARDS = [
-    // Major Arcana
-    require('../../../assets/images/major_arcana/tarot__fool.png'),
-    require('../../../assets/images/major_arcana/tarot__magician.png'),
-    require('../../../assets/images/major_arcana/tarot__priestess.png'),
-    require('../../../assets/images/major_arcana/tarot__empress.png'),
-    require('../../../assets/images/major_arcana/tarot__emperor.png'),
-    require('../../../assets/images/major_arcana/tarot__hierophant.png'),
-    require('../../../assets/images/major_arcana/tarot__lovers.png'),
-    require('../../../assets/images/major_arcana/tarot__chariot.png'),
-    require('../../../assets/images/major_arcana/tarot__strength.png'),
-    require('../../../assets/images/major_arcana/tarot__hermit.png'),
-    require('../../../assets/images/major_arcana/tarot__fortune.png'),
-    require('../../../assets/images/major_arcana/tarot__justice.png'),
-    require('../../../assets/images/major_arcana/tarot__hangman.png'),
-    require('../../../assets/images/major_arcana/tarot__death.png'),
-    require('../../../assets/images/major_arcana/tarot__temperance.png'),
-    require('../../../assets/images/major_arcana/tarot__devil.png'),
-    require('../../../assets/images/major_arcana/tarot__tower.png'),
-    require('../../../assets/images/major_arcana/tarot__star.png'),
-    require('../../../assets/images/major_arcana/tarot__moon.png'),
-    require('../../../assets/images/major_arcana/tarot__sun.png'),
-    require('../../../assets/images/major_arcana/tarot__judgment.png'),
-    require('../../../assets/images/major_arcana/tarot__theworld.png'),
 
-    // Minor Arcana - Cups
-    require('../../../assets/images/minor_arcana/tarot__ace_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__2_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__3_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__4_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__5_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__6_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__7_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__8_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__9_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__10_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__page_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__knight_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__queen_cups.png'),
-    require('../../../assets/images/minor_arcana/tarot__king_cups.png'),
-
-    // Minor Arcana - Wands
-    require('../../../assets/images/minor_arcana/tarot__ace_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__2_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__3_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__4_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__5_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__6_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__7_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__8_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__9_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__10_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__page_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__knight_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__queen_wands.png'),
-    require('../../../assets/images/minor_arcana/tarot__king_wands.png'),
-
-    // Minor Arcana - Swords
-    require('../../../assets/images/minor_arcana/tarot__ace_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__2_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__3_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__4_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__5_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__6_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__7_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__8_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__9_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__10_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__page_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__knight_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__queen_swords.png'),
-    require('../../../assets/images/minor_arcana/tarot__king_swords.png'),
-
-    // Minor Arcana - Pentacles
-    require('../../../assets/images/minor_arcana/tarot__ace_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__2_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__3_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__4_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__5_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__6_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__7_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__8_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__9_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__10_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__page_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__knight_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__queen_pentacles.png'),
-    require('../../../assets/images/minor_arcana/tarot__king_pentacles.png'),
-];
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
