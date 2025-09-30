@@ -4,41 +4,56 @@ import * as Localization from 'expo-localization';
 
 // Define translation structure with TypeScript
 const en = {
-    welcome: 'Welcome111',
-    greeting: 'Hello, {{name}}!',
-    home: {
-        title: 'Home Screen',
-        subtitle: 'This is the home screen'
-    },
-    buttons: {
-        submit: 'Submit',
-        cancel: 'Cancel'
+    /* welcome: 'Welcome111',
+     greeting: 'Hello, {{name}}!',
+     home: {
+         title: 'Home Screen',
+         subtitle: 'This is the home screen'
+     },
+     buttons: {
+         submit: 'Submit',
+         cancel: 'Cancel'
+     },*/
+    auth: {
+        welcomeBack: 'Welcome Back',
+        signInToContinue: 'Sign in to continue',
+        email: 'Email',
+        password: 'Password',
+        enterYourEmail: 'Enter your email',
+        enterYourPassword: 'Enter your password',
+        signIn: 'Sign In',
+        dontHaveAccount: "Don't have an account?",
+        signUp: 'Sign up'
     }
 } as const;
 
 const es = {
-    welcome: 'Bienvenido',
-    greeting: '¡Hola, {{name}}!',
-    home: {
-        title: 'Pantalla de Inicio',
-        subtitle: 'Esta es la pantalla de inicio'
-    },
-    buttons: {
-        submit: 'Enviar',
-        cancel: 'Cancelar'
+
+    auth: {
+        welcomeBack: 'Bienvenido de nuevo',
+        signInToContinue: 'Inicia sesión para continuar',
+        email: 'Correo electrónico',
+        password: 'Contraseña',
+        enterYourEmail: 'Ingresa tu correo electrónico',
+        enterYourPassword: 'Ingresa tu contraseña',
+        signIn: 'Iniciar sesión',
+        dontHaveAccount: '¿No tienes una cuenta?',
+        signUp: 'Registrarse'
     }
 } as const;
 
 const fr = {
-    welcome: 'Bienvenue',
-    greeting: 'Bonjour, {{name}}!',
-    home: {
-        title: 'Écran d\'accueil',
-        subtitle: 'Ceci est l\'écran d\'accueil'
-    },
-    buttons: {
-        submit: 'Soumettre',
-        cancel: 'Annuler'
+
+    auth: {
+        welcomeBack: 'Bon retour',
+        signInToContinue: 'Connectez-vous pour continuer',
+        email: 'Email',
+        password: 'Mot de passe',
+        enterYourEmail: 'Entrez votre email',
+        enterYourPassword: 'Entrez votre mot de passe',
+        signIn: 'Se connecter',
+        dontHaveAccount: 'Vous n\'avez pas de compte ?',
+        signUp: 'S\'inscrire'
     }
 } as const;
 

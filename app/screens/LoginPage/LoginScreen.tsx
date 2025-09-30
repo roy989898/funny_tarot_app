@@ -69,7 +69,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
             <View style={styles.content}>
                 <View style={styles.header}>
                     {/*TODO here change to ICON or something*/}
-                    <Text>{t('welcome')}</Text>
+                    {/*<Text>{t('welcome')}</Text>*/}
                     <Animated.View style={animatedStyle}>
                         <Image
                             source={/*showBack ? require('../../../assets/images/tarot__back.png') :*/ currentCard}
@@ -77,19 +77,19 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                         />
                     </Animated.View>
 
-                    <Text style={styles.title}>Welcome Back</Text>
-                    <Text style={styles.subtitle}>Sign in to continue</Text>
+                    <Text style={styles.title}>{t('auth.welcomeBack')}</Text>
+                    <Text style={styles.subtitle}>{t('auth.signInToContinue')}</Text>
                 </View>
 
                 <View style={styles.form}>
                     <View style={styles.inputGroup}>
                         {/*<Text style={styles.label}>Email</Text>*/}
                         <TextInput
-                            label={"Email"}
+                            label={t('auth.email')}
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder="Enter your email"
+                            placeholder={t('auth.enterYourEmail')}
                             keyboardType="email-address"
                             autoCapitalize="none"
                             autoComplete="email"
@@ -99,11 +99,11 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                     <View style={styles.inputGroup}>
                         {/*<Text style={styles.label}>Password</Text>*/}
                         <TextInput
-                            label={"Password"}
+                            label={t('auth.password')}
                             style={styles.input}
                             value={password}
                             onChangeText={setPassword}
-                            placeholder="Enter your password"
+                            placeholder={t('auth.enterYourPassword')}
                             secureTextEntry
                             autoComplete="password"
                         />
@@ -113,14 +113,14 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                         <Text style={styles.buttonText}>Sign In</Text>
                     </TouchableOpacity>*/}
                     <Button mode="contained" onPress={() => console.log('Sign In')}>
-                        Sign In
+                        {t('auth.signIn')}
                     </Button>
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.footerText}>Don&#39;t have an account?</Text>
+                    <Text style={styles.footerText}>{t('auth.dontHaveAccount')}</Text>
                     <TouchableOpacity>
-                        <Text style={{color: theme.colors.primary, ...styles.footerLink}}>Sign up</Text>
+                        <Text style={{color: theme.colors.primary, ...styles.footerLink}}>{t('auth.signUp')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
