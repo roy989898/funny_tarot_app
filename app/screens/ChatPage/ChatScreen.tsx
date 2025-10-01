@@ -1,28 +1,43 @@
 import {Text, useTheme} from "react-native-paper";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {View} from "react-native";
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
+import {GiftedChat} from "react-native-gifted-chat/src";
+import {IMessage} from "react-native-gifted-chat";
 
 export default function ChatScreen() {
 
 
-    const theme = useTheme();
+    const [messages, setMessages] = useState<IMessage[]>([])
 
+    useEffect(() => {
+        setMessages([
+            {
+                _id: 1,
+                text: 'Hello developer',
+                createdAt: new Date(),
+                user: {
+                    _id: 2,
+                    name: 'React Native',
+                    avatar: 'https://placeimg.com/140/140/any',
+                },
+            },
+        ])
+    }, [])
+
+    const onSend = useCallback((messages: IMessage[] = []) => {
+        setMessages(previousMessages =>
+            GiftedChat.append(previousMessages, messages),
+        )
+    }, [])
 
     return (
-
-        <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
-            <View style={{flex: 1, alignItems: 'center'}}>
-
-                <Text>
-
-
-                    Chat Screen
-
-                </Text>
-            </View>
-        </SafeAreaView>
-
-
+        <GiftedChat
+            messages={messages}
+            onSend={messages => onSend(messages)}
+            user={{
+                _id: 1,
+            }}
+        />
     )
 }
