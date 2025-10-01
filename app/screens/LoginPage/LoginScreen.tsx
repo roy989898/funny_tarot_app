@@ -176,7 +176,8 @@ export function LoginScreen(/*{navigation}: Props*/): React.JSX.Element {
                             <Button mode="contained" onPress={() => {
                                 console.log('Sign In')
                                 // @ts-ignore
-                                navigation.push('Home')
+                                // navigation.push('Home')
+                                navigation.replace('Home');
 
                             }}>
                                 {t('auth.signIn')}

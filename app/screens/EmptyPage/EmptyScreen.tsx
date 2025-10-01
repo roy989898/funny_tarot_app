@@ -4,16 +4,17 @@ import type {RootStackParamList} from "@/App";
 import {Button, View} from "react-native";
 import Animated from "react-native-reanimated";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {Text} from "react-native-paper";
+import {Text, useTheme} from "react-native-paper";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Empty'>;
+// type Props = NativeStackScreenProps<RootStackParamList, 'Empty'>;
 
-export default function EmptyScreen({navigation}: Props): React.JSX.Element {
+export default function EmptyScreen(): React.JSX.Element {
+    const theme = useTheme();
 
 
     return (
 
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
             <View style={{flex: 1, alignItems: 'center'}}>
 
                 <Text>
