@@ -22,9 +22,9 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function HomeStack() {
     return (
         <Tab.Navigator>
-            <Tab.Screen name="Home" component={EmptyScreen}/>
-            <Tab.Screen name="Feed" component={EmptyScreen}/>
-            <Tab.Screen name="Notifications" component={EmptyScreen}/>
+            <Tab.Screen name="Home" component={EmptyScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Feed" component={EmptyScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Notifications" component={EmptyScreen} options={{headerShown: false}}/>
         </Tab.Navigator>
     )
 
