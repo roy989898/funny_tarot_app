@@ -4,10 +4,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './app/screens/HomeScreen';
 import {LoginScreen} from "@/app/screens/LoginPage/LoginScreen";
 import {I18nProvider} from "@/i18n/I18nContext";
+// react-native-vector-icons/Ionicons otherwise.
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export type RootStackParamList = {
     Home: undefined;
     Login: undefined;
+    Empty: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
