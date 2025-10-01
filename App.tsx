@@ -12,14 +12,20 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+function RootStack() {
+    return (
+        <Stack.Navigator initialRouteName="Login">
+            {/*<Stack.Screen name="Home" component={HomeScreen}/>*/}
+            <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
+        </Stack.Navigator>
+    );
+}
+
 export default function App(): React.JSX.Element {
     return (
         <I18nProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Login">
-                    {/*<Stack.Screen name="Home" component={HomeScreen}/>*/}
-                    <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
-                </Stack.Navigator>
+                <RootStack/>
             </NavigationContainer>
         </I18nProvider>
 
