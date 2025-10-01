@@ -56,26 +56,14 @@ export default function ChatScreen() {
                         // Extract currentMessage from props
 
                         if (props && props.createdAt) {
-                            const date = moment(props.createdAt);
-                            const today = moment().startOf('day');
-                            const yesterday = moment().subtract(1, 'days').startOf('day');
 
-                            let dateText;
-                            if (date.isSame(today, 'day')) {
-                                dateText = '今天';
-                            } else if (date.isSame(yesterday, 'day')) {
-                                dateText = '昨天';
-                            } else {
-                                dateText = date.format('YYYY年MM月DD日');
-                            }
-
-                            console.log("dateText:", dateText);
 
                             return (
                                 <Day
                                     {...props}
                                     // Pass a function that returns the date text
                                     // dateFormat={'YY'}
+                                    //TODO
                                     dateFormatCalendar={{
                                         sameDay: "[Today]", // The same day ( Today at 2:30 AM )
                                         // nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
@@ -91,7 +79,7 @@ export default function ChatScreen() {
                         console.log("No date to render");
                         return null;
                     }}
-
+                    //todo
                     placeholder="请输入消息..."
                 />
             </KeyboardAvoidingView>
