@@ -6,9 +6,12 @@ import {GiftedChat} from "react-native-gifted-chat/src";
 import {Day, IMessage} from "react-native-gifted-chat";
 import {myColor} from "@/color";
 import moment from "moment";
+import 'moment/locale/zh-cn'; // Import Chinese locale
+
+// Set moment locale globally
+moment.locale('zh-cn');
 
 export default function ChatScreen() {
-
 
     const [messages, setMessages] = useState<IMessage[]>([])
     const theme = useTheme();
@@ -41,24 +44,23 @@ export default function ChatScreen() {
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}
                                   style={styles.content}>
 
-
                 <GiftedChat
                     messages={messages}
                     onSend={messages => onSend(messages)}
                     user={{
                         _id: 1,
                     }}
-                    locale="zh-tw"
-                    //TODO custom renderDay
-                    renderDay={(currentMessage) => {
-
+                    locale="zh-cn"
+                    renderDay={(props) => {
                         // const { currentMessage } = props;
-                        if (currentMessage && currentMessage.createdAt) {
-                            const date = moment(currentMessage.createdAt);
+                        // Extract currentMessage from props
+
+                        if (props && props.createdAt) {
+                            const date = moment(props.createdAt);
                             const today = moment().startOf('day');
                             const yesterday = moment().subtract(1, 'days').startOf('day');
 
-                            let dateText= date.format('YYYY年MM月DD日')
+                            let dateText;
                             if (date.isSame(today, 'day')) {
                                 dateText = '今天';
                             } else if (date.isSame(yesterday, 'day')) {
@@ -67,34 +69,40 @@ export default function ChatScreen() {
                                 dateText = date.format('YYYY年MM月DD日');
                             }
 
+                            console.log("dateText:", dateText);
+
                             return (
                                 <Day
-                                    {...currentMessage}
-                                    dateFormat={dateText}
+                                    {...props}
+                                    // Pass a function that returns the date text
+                                    // dateFormat={'YY'}
+                                    dateFormatCalendar={{
+                                        sameDay: "[Today]", // The same day ( Today at 2:30 AM )
+                                        // nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
+                                        // nextWeek: "dddd [at] h:mm A", // The next week ( Sunday at 2:30 AM )
+                                        lastDay: "[Yesterday]", // The day before ( Yesterday at 2:30 AM )
+                                        // lastWeek: "[Last] dddd [at] h:mm A", // Last week ( Last Monday at 2:30 AM )
+                                        sameElse: "DD/MM/YYYY", // Everything else ( 17/10/2011 )
+                                    }}
                                 />
                             );
                         }
+
+                        console.log("No date to render");
                         return null;
                     }}
 
-                    //TODO custom placeholder
-                    // placeholder="请输入消息..."
-
+                    placeholder="请输入消息..."
                 />
             </KeyboardAvoidingView>
 
         </SafeAreaView>
-
     )
 }
-const styles = StyleSheet.create({
 
+const styles = StyleSheet.create({
     content: {
         flex: 1,
-        // paddingHorizontal: 24, // 8pt × 3
-        paddingTop: 48, // 8pt × 6
-        // paddingBottom: 32, // 8pt × 4
-        /*   justifyContent: 'space-between',*/
+        // paddingTop: 48,
     },
-
 });
