@@ -9,6 +9,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import EmptyScreen from "@/app/screens/EmptyPage/EmptyScreen";
 import {useTheme} from "react-native-paper";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 export type RootStackParamList = {
     Home: undefined;
@@ -25,21 +26,23 @@ function HomeStack() {
 
     return (
         <Tab.Navigator
-            screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
+            screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => {
                     let iconName;
-
-                    if (route.name === 'Home') {
-                        iconName = focused
-                            ? 'ios-information-circle'
-                            : 'ios-information-circle-outline';
+                    // https://icons.expo.fyi/Index
+                    if (route.name === 'Chat') {
+                        /*  let icon = focused
+                              ? <AntDesign name="comment" size={24} color=color/>
+                              : <AntDesign name="comment" size={24} color="black"/>;*/
+                        return <AntDesign name="comment" size={size} color={color}/>
                     } else if (route.name === 'Settings') {
                         iconName = focused ? 'ios-list' : 'ios-list-outline';
                     }
 
                     // You can return any component that you like here!
                     // @ts-ignore
-                    return <Ionicons name={iconName} size={size} color={color} />;
+                    return <AntDesign name="file-unknown" size={size} color={color}/>
+                    // return <Ionicons name={iconName} size={size} color={color}/>;
                 },
                 tabBarActiveTintColor: theme.colors.primary,
                 tabBarInactiveTintColor: theme.colors.onSurfaceVariant,
