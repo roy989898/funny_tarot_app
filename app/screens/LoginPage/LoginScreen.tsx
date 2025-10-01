@@ -16,12 +16,14 @@ import Animated, {
 } from 'react-native-reanimated';
 import {useI18n} from "@/i18n/I18nContext";
 import {TAROT_CARDS} from "@/app/StaticValue";
+import {useNavigation} from "expo-router";
+import {myColor} from "@/color";
 // Array of all tarot cards
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export function LoginScreen({navigation}: Props): React.JSX.Element {
+export function LoginScreen(/*{navigation}: Props*/): React.JSX.Element {
     const {t, changeLanguage} = useI18n();
     const theme = useTheme();
     const [email, setEmail] = useState('');
@@ -29,6 +31,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
     const [pin, setPin] = useState("")
     const [currentCard, setCurrentCard] = useState(TAROT_CARDS[0]);
     const [isRegister, setIsRegister] = useState(false);
+    const navigation = useNavigation();
 
     // Animation setup for spinning card
     const rotation = useSharedValue(0);
@@ -82,7 +85,7 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                     {isRegister ? (
 
                         <>
-                            <Text style={styles.title}>{t('auth.hello')}</Text>
+                            <Text style={{...styles.title}}>{t('auth.hello')}</Text>
                             <Text style={styles.subtitle}>{t('auth.registerToStart')}</Text>
                         </>
                     ) : (
@@ -170,7 +173,12 @@ export function LoginScreen({navigation}: Props): React.JSX.Element {
                     ) : (
                         <>
 
-                            <Button mode="contained" onPress={() => console.log('Sign In')}>
+                            <Button mode="contained" onPress={() => {
+                                console.log('Sign In')
+                                // @ts-ignore
+                                navigation.push('Home')
+
+                            }}>
                                 {t('auth.signIn')}
                             </Button>
 
@@ -223,13 +231,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 32, // 8pt × 4
         fontWeight: '700',
-        color: '#1F2937',
+        color: myColor.text,
         marginBottom: 8, // 8pt × 1
         textAlign: 'center',
     },
     subtitle: {
         fontSize: 16, // 8pt × 2
-        color: '#6B7280',
+        color: myColor.subText,
         textAlign: 'center',
     },
     form: {
@@ -277,7 +285,7 @@ const styles = StyleSheet.create({
     },
     footerText: {
         fontSize: 16, // 8pt × 2
-        color: '#6B7280',
+        color: myColor.subText,
     },
     footerLink: {
         fontSize: 16, // 8pt × 2
