@@ -13,10 +13,40 @@ moment.locale('zh-cn');
 
 export default function ChatScreen() {
 
-    const [messages, setMessages] = useState<IMessage[]>([])
+    // const [messages, setMessages] = useState<IMessage[]>([])
+    const [messages, setMessages] = useState<IMessage[]>([
+        {
+            _id: 2,
+            text: '您想了解哪方面的信息？',
+            createdAt: new Date(),
+            user: {
+                _id: 2,
+                name: '助手',
+            },
+            quickReplies: {
+                type: 'radio',
+                keepIt: false, // Hide after selection
+                values: [
+                    { title: '📦 物流信息', value: 'logistics' },
+                    { title: '💰 价格查询', value: 'price' },
+                    { title: '🛠️ 技术支持', value: 'support' },
+                    { title: '📞 联系客服', value: 'contact' },
+                ],
+            },
+        },
+        {
+            _id: 1,
+            text: '你好！欢迎咨询',
+            createdAt: new Date(),
+            user: {
+                _id: 2,
+                name: '助手',
+            },
+        },
+    ]);
     const theme = useTheme();
 
-    useEffect(() => {
+   /* useEffect(() => {
         setMessages([
             {
                 _id: 1,
@@ -29,7 +59,7 @@ export default function ChatScreen() {
                 },
             },
         ])
-    }, [])
+    }, [])*/
 
     const onSend = useCallback((messages: IMessage[] = []) => {
         setMessages(previousMessages =>
@@ -61,8 +91,7 @@ export default function ChatScreen() {
                             return (
                                 <Day
                                     {...props}
-                                    // Pass a function that returns the date text
-                                    // dateFormat={'YY'}
+
                                     //TODO
                                     dateFormatCalendar={{
                                         sameDay: "[Today]", // The same day ( Today at 2:30 AM )
@@ -76,11 +105,16 @@ export default function ChatScreen() {
                             );
                         }
 
-                        console.log("No date to render");
+
                         return null;
                     }}
                     //todo
                     placeholder="请输入消息..."
+
+
+
+
+
                 />
             </KeyboardAvoidingView>
 
