@@ -10,6 +10,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import EmptyScreen from "@/app/screens/EmptyPage/EmptyScreen";
 import {useTheme} from "react-native-paper";
 import AntDesign from '@expo/vector-icons/AntDesign';
+import ChatScreen from "@/app/screens/ChatPage/ChatScreen";
 
 export type RootStackParamList = {
     Home: undefined;
@@ -55,7 +56,7 @@ function HomeStack() {
 
 
         >
-            <Tab.Screen name="Chat" component={EmptyScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Chat" component={ChatScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Feed" component={EmptyScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Notifications" component={EmptyScreen} options={{headerShown: false}}/>
         </Tab.Navigator>
