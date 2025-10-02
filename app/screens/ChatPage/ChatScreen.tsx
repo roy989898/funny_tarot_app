@@ -3,7 +3,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {KeyboardAvoidingView, Platform, StyleSheet, View} from "react-native";
 import React, {useCallback, useEffect, useState} from "react";
 import {GiftedChat} from "react-native-gifted-chat/src";
-import {Bubble, Day, IMessage, Send} from "react-native-gifted-chat";
+import {Bubble, Day, IMessage, InputToolbar, Send} from "react-native-gifted-chat";
 import {myColor} from "@/color";
 import moment from "moment";
 import 'moment/locale/zh-cn';
@@ -73,10 +73,17 @@ export default function ChatScreen() {
         <SafeAreaView style={{
             flex: 1, backgroundColor: theme.colors.background
         }}>
+
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}
                                   style={styles.content}>
 
                 <GiftedChat
+                    renderInputToolbar={(props) => {
+                        if (true) {
+                            return null; // Hide input completely
+                        }
+                        return <InputToolbar {...props} />;
+                    }}
                     renderSend={(props) => (
                         <Send
                             {...props}
