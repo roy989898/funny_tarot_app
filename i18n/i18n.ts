@@ -33,7 +33,11 @@ const en = {
 
         pinCode: "Pin Code",
         enterYourPin: 'Enter your pin code form email',
-    }
+    },
+    pleaseInput: 'Please enter your message...',
+    today: 'Today',
+    yesterday: 'Yesterday',
+    tarotMaster: 'Tarot Master',
 } as const;
 
 const es = {
@@ -57,7 +61,11 @@ const es = {
         pinCode: "Pin Code",
         enterYourPin: 'Enter your pin code form email',
 
-    }
+    },
+    pleaseInput: 'Please enter your message...',
+    today: 'Today',
+    yesterday: 'Yesterday',
+    tarotMaster: 'Tarot Master',
 } as const;
 
 const fr = {
@@ -81,7 +89,11 @@ const fr = {
         pinCode: "Pin Code",
         enterYourPin: 'Enter your pin code form email',
 
-    }
+    },
+    pleaseInput: 'Please enter your message...',
+    today: 'Today',
+    yesterday: 'Yesterday',
+    tarotMaster: 'Tarot Master',
 } as const;
 
 // Define translations object

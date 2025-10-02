@@ -8,12 +8,16 @@ import {myColor} from "@/color";
 import moment from "moment";
 import 'moment/locale/zh-cn';
 import {QuickReplies} from "react-native-gifted-chat/lib/QuickReplies";
-import Ionicons from "@expo/vector-icons/Ionicons"; // Import Chinese locale
+import Ionicons from "@expo/vector-icons/Ionicons";
+import {useI18n} from "@/i18n/I18nContext"; // Import Chinese locale
 
 // Set moment locale globally
 moment.locale('zh-cn');
 
 export default function ChatScreen() {
+
+    const {t, changeLanguage} = useI18n();
+    const master = t('tarotMaster')
 
     // const [messages, setMessages] = useState<IMessage[]>([])
     const [messages, setMessages] = useState<IMessage[]>([
@@ -23,7 +27,7 @@ export default function ChatScreen() {
             createdAt: new Date(),
             user: {
                 _id: 2,
-                name: 'Master',
+                name: master,
             },
             quickReplies: {
                 type: 'radio',
@@ -42,7 +46,7 @@ export default function ChatScreen() {
             createdAt: new Date(),
             user: {
                 _id: 2,
-                name: 'Master',
+                name: master,
             },
         },
     ]);
@@ -192,10 +196,10 @@ export default function ChatScreen() {
 
                                     //TODO
                                     dateFormatCalendar={{
-                                        sameDay: "[Today]", // The same day ( Today at 2:30 AM )
+                                        sameDay: "[" + t('today') + "]", // The same day ( Today at 2:30 AM )
                                         // nextDay: "[Tomorrow at] h:mm A", // The next day ( Tomorrow at 2:30 AM )
                                         // nextWeek: "dddd [at] h:mm A", // The next week ( Sunday at 2:30 AM )
-                                        lastDay: "[Yesterday]", // The day before ( Yesterday at 2:30 AM )
+                                        lastDay: "[" + t('yesterday') + "]",// The day before ( Yesterday at 2:30 AM )
                                         // lastWeek: "[Last] dddd [at] h:mm A", // Last week ( Last Monday at 2:30 AM )
                                         sameElse: "DD/MM/YYYY", // Everything else ( 17/10/2011 )
                                     }}
@@ -207,7 +211,7 @@ export default function ChatScreen() {
                         return null;
                     }}
                     //todo
-                    placeholder="请输入消息..."
+                    placeholder={t('pleaseInput')}
 
 
                 />
