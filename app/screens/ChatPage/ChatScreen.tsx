@@ -3,7 +3,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {KeyboardAvoidingView, Platform, StyleSheet, View} from "react-native";
 import React, {useCallback, useEffect, useState} from "react";
 import {GiftedChat} from "react-native-gifted-chat/src";
-import {Day, IMessage} from "react-native-gifted-chat";
+import {Bubble, Day, IMessage} from "react-native-gifted-chat";
 import {myColor} from "@/color";
 import moment from "moment";
 import 'moment/locale/zh-cn'; // Import Chinese locale
@@ -21,7 +21,7 @@ export default function ChatScreen() {
             createdAt: new Date(),
             user: {
                 _id: 2,
-                name: '助手',
+                name: 'Master',
             },
             quickReplies: {
                 type: 'radio',
@@ -40,7 +40,7 @@ export default function ChatScreen() {
             createdAt: new Date(),
             user: {
                 _id: 2,
-                name: '助手',
+                name: 'Master',
             },
         },
     ]);
@@ -75,6 +75,29 @@ export default function ChatScreen() {
                                   style={styles.content}>
 
                 <GiftedChat
+                    renderBubble={(props) => {
+                        return (
+                            <Bubble
+                                {...props}
+                                wrapperStyle={{
+                                    left: {
+                                        backgroundColor: theme.colors.primary, // Received message bubble color
+                                    },
+                                    right: {
+                                        backgroundColor:theme.colors.secondary, // Sent message bubble color
+                                    },
+                                }}
+                                textStyle={{
+                                    left: {
+                                        color: theme.colors.onPrimary, // Received message text color
+                                    },
+                                    right: {
+                                        color: theme.colors.onSecondary, // Sent message text color
+                                    },
+                                }}
+                            />
+                        );
+                    }}
                     bottomOffset={-80}
                     messages={messages}
                     onSend={messages => onSend(messages)}
