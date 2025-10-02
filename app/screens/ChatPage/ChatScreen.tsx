@@ -3,7 +3,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {KeyboardAvoidingView, Platform, StyleSheet, View} from "react-native";
 import React, {useCallback, useEffect, useState} from "react";
 import {GiftedChat} from "react-native-gifted-chat/src";
-import {Bubble, Day, IMessage, InputToolbar, Send} from "react-native-gifted-chat";
+import {Bubble, Day, IMessage, InputToolbar, Reply, Send} from "react-native-gifted-chat";
 import {myColor} from "@/color";
 import moment from "moment";
 import 'moment/locale/zh-cn';
@@ -64,10 +64,28 @@ export default function ChatScreen() {
      }, [])*/
 
     const onSend = useCallback((messages: IMessage[] = []) => {
+        console.log(messages);
         setMessages(previousMessages =>
             GiftedChat.append(previousMessages, messages),
         )
     }, [])
+
+    const onQuickReply = (quickReply: Reply[]) => {
+        console.log('Selected:', quickReply);
+        // Handle the selected option
+        const selectedValue = quickReply[0].value;
+        const selectedTitle = quickReply[0].title;
+
+        // Send user's selection as a message
+        let id = Math.random().toString()
+        console.log('id:', id);
+        onSend([{
+            _id: id,
+            text: selectedTitle,
+            createdAt: new Date(),
+            user: {_id: 1},
+        }]);
+    }
 
     return (
         <SafeAreaView style={{
@@ -79,7 +97,7 @@ export default function ChatScreen() {
 
                 <GiftedChat
                     renderInputToolbar={(props) => {
-                        if (true) {
+                        if (false) {
                             return null; // Hide input completely
                         }
                         return <InputToolbar {...props} />;
@@ -110,11 +128,7 @@ export default function ChatScreen() {
                             </View>
                         </Send>
                     )}
-                    onQuickReply={(quickReply) => {
-                        // Handle quick reply selection
-                        // TODO
-                        console.log('Selected:', quickReply);
-                    }}
+                    onQuickReply={onQuickReply}
                     renderQuickReplies={(props) => (
                         <QuickReplies
                             {...props}
