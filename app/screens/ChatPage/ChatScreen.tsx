@@ -75,6 +75,7 @@ export default function ChatScreen() {
                                   style={styles.content}>
 
                 <GiftedChat
+                    bottomOffset={-80}
                     messages={messages}
                     onSend={messages => onSend(messages)}
                     user={{
