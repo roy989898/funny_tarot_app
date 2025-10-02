@@ -6,7 +6,8 @@ import {GiftedChat} from "react-native-gifted-chat/src";
 import {Bubble, Day, IMessage} from "react-native-gifted-chat";
 import {myColor} from "@/color";
 import moment from "moment";
-import 'moment/locale/zh-cn'; // Import Chinese locale
+import 'moment/locale/zh-cn';
+import {QuickReplies} from "react-native-gifted-chat/lib/QuickReplies"; // Import Chinese locale
 
 // Set moment locale globally
 moment.locale('zh-cn');
@@ -27,10 +28,10 @@ export default function ChatScreen() {
                 type: 'radio',
                 keepIt: false, // Hide after selection
                 values: [
-                    { title: '📦 物流信息', value: 'logistics' },
-                    { title: '💰 价格查询', value: 'price' },
-                    { title: '🛠️ 技术支持', value: 'support' },
-                    { title: '📞 联系客服', value: 'contact' },
+                    {title: '📦 物流信息', value: 'logistics'},
+                    {title: '💰 价格查询', value: 'price'},
+                    {title: '🛠️ 技术支持', value: 'support'},
+                    {title: '📞 联系客服', value: 'contact'},
                 ],
             },
         },
@@ -46,20 +47,20 @@ export default function ChatScreen() {
     ]);
     const theme = useTheme();
 
-   /* useEffect(() => {
-        setMessages([
-            {
-                _id: 1,
-                text: 'Hello developer',
-                createdAt: new Date(),
-                user: {
-                    _id: 2,
-                    name: 'React Native',
-                    // avatar: 'https://placeimg.com/140/140/any',
-                },
-            },
-        ])
-    }, [])*/
+    /* useEffect(() => {
+         setMessages([
+             {
+                 _id: 1,
+                 text: 'Hello developer',
+                 createdAt: new Date(),
+                 user: {
+                     _id: 2,
+                     name: 'React Native',
+                     // avatar: 'https://placeimg.com/140/140/any',
+                 },
+             },
+         ])
+     }, [])*/
 
     const onSend = useCallback((messages: IMessage[] = []) => {
         setMessages(previousMessages =>
@@ -75,6 +76,32 @@ export default function ChatScreen() {
                                   style={styles.content}>
 
                 <GiftedChat
+
+                    onQuickReply={(quickReply) => {
+                        // Handle quick reply selection
+                        // TODO
+                        console.log('Selected:', quickReply);
+                    }}
+                    renderQuickReplies={(props) => (
+                        <QuickReplies
+                            {...props}
+                            color="#007AFF" // Background color of quick reply buttons
+                            quickReplyStyle={{
+
+                                backgroundColor: theme.colors.primaryContainer, // Button background
+                                borderBlockColor: theme.colors.primaryContainer,
+                                borderBlockEndColor: theme.colors.primaryContainer,
+                                borderBlockStartColor: theme.colors.primaryContainer,
+                                borderBottomColor: theme.colors.primaryContainer,
+                                borderEndColor: theme.colors.primaryContainer,
+                                borderStartColor: theme.colors.primaryContainer,// Border color
+                            }}
+                            quickReplyTextStyle={{
+
+                                color: theme.colors.onPrimaryContainer, // Text color
+                            }}
+                        />
+                    )}
                     renderBubble={(props) => {
                         return (
                             <Bubble
@@ -84,7 +111,7 @@ export default function ChatScreen() {
                                         backgroundColor: theme.colors.primary, // Received message bubble color
                                     },
                                     right: {
-                                        backgroundColor:theme.colors.secondary, // Sent message bubble color
+                                        backgroundColor: theme.colors.secondary, // Sent message bubble color
                                     },
                                 }}
                                 textStyle={{
@@ -134,9 +161,6 @@ export default function ChatScreen() {
                     }}
                     //todo
                     placeholder="请输入消息..."
-
-
-
 
 
                 />
