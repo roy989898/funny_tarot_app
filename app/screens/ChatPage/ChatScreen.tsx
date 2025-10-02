@@ -3,11 +3,12 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {KeyboardAvoidingView, Platform, StyleSheet, View} from "react-native";
 import React, {useCallback, useEffect, useState} from "react";
 import {GiftedChat} from "react-native-gifted-chat/src";
-import {Bubble, Day, IMessage} from "react-native-gifted-chat";
+import {Bubble, Day, IMessage, Send} from "react-native-gifted-chat";
 import {myColor} from "@/color";
 import moment from "moment";
 import 'moment/locale/zh-cn';
-import {QuickReplies} from "react-native-gifted-chat/lib/QuickReplies"; // Import Chinese locale
+import {QuickReplies} from "react-native-gifted-chat/lib/QuickReplies";
+import Ionicons from "@expo/vector-icons/Ionicons"; // Import Chinese locale
 
 // Set moment locale globally
 moment.locale('zh-cn');
@@ -76,7 +77,32 @@ export default function ChatScreen() {
                                   style={styles.content}>
 
                 <GiftedChat
-
+                    renderSend={(props) => (
+                        <Send
+                            {...props}
+                            containerStyle={{
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginRight: 12,
+                                marginLeft: 8,
+                            }}
+                        >
+                            <View style={{
+                                width: 36,
+                                height: 36,
+                                borderRadius: 18,
+                                backgroundColor: theme.colors.primary, // Background color
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}>
+                                <Ionicons
+                                    name="send"
+                                    size={18}
+                                    color="#FFFFFF" // Icon color
+                                />
+                            </View>
+                        </Send>
+                    )}
                     onQuickReply={(quickReply) => {
                         // Handle quick reply selection
                         // TODO
